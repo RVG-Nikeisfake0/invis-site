@@ -5,18 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1x1 Image Background</title>
     <style>
-        html, body {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
+            overflow: hidden;
         }
-        body {
-            background-image: url('1x1.png');
-            background-size: 1px 1px;
+        #container {
+            display: flex;
+            flex-wrap: wrap;
         }
     </style>
 </head>
 <body>
+    <div id="container"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('container');
+            const imgSize = 1;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const totalImages = Math.ceil(width * height);
+
+            for (let i = 0; i < totalImages; i++) {
+                const img = document.createElement('img');
+                img.src = '1x1.png';
+                img.style.width = `${imgSize}px`;
+                img.style.height = `${imgSize}px`;
+                container.appendChild(img);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            location.reload();
+        });
+    </script>
 </body>
 </html>
